@@ -1,4 +1,8 @@
-.git/
+.git*/
 .vscode/
 
-.env.example
+.env*
+*ignore
+*.yml
+Dockerfile
+*.md
