@@ -12,4 +12,4 @@ RUN pip install --requirement requirements.txt
 
 COPY . .
 
-CMD gunicorn --config python:config.gunicorn
+CMD scripts/entrypoint.sh
