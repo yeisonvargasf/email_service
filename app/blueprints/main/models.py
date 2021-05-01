@@ -1,6 +1,5 @@
-from sqlalchemy.dialects.postgresql import JSON
-
 from app.extensions import db
+from sqlalchemy.dialects.postgresql import JSON
 
 
 class EmailModel(db.Model):

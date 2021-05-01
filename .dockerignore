@@ -7,3 +7,4 @@ __pycache__/
 *.yml
 Dockerfile
 *.md
+*.toml

@@ -1,0 +1,4 @@
+black==21.4b2
+flake8==3.9.1
+isort==5.8.0
+colorama==0.4.4

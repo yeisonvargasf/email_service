@@ -1,9 +1,11 @@
+from app.blueprints.main import main_bp
+from app.blueprints.main.models import EmailModel  # noqa: F401
+from app.extensions import db
+from app.extensions import ma
+from app.extensions import mail
+from app.extensions import migrate
 from flask import Flask
 from flask import jsonify
-
-from app.extensions import mail, db, migrate, ma
-from app.blueprints.main import main_bp
-from app.blueprints.main.models import EmailModel
 
 
 def create_app():

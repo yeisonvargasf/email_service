@@ -1,4 +1,5 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint
+from flask import jsonify
 
 
 bp = Blueprint("main", __name__, url_prefix="/mail")
