@@ -1,4 +1,6 @@
 from os import getenv
 
 
-LOG_LEVEL = "DEBUG" if bool(getenv("FLASK_DEBUG", "True")) else "INFO"
+LOG_LEVEL = "DEBUG" if bool(getenv("FLASK_DEBUG")) else "INFO"
+SQLALCHEMY_DATABASE_URI = getenv("SQLALCHEMY_DATABASE_URI")
+SQLALCHEMY_TRACK_MODIFICATIONS = False

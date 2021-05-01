@@ -1,11 +1,35 @@
 version: "3.8"
 
+
+networks:
+    db:
+
+
+volumes:
+    email-postgres-data:
+
+
 services:
     email:
         image: email:development
         build:
             context: .
+        networks:
+            - db
         ports:
             - 8000:8000
+        volumes:
+            - .:/usr/src/app
         env_file:
             - .env
+
+    postgres:
+        image: postgres:13.2
+        environment:
+            POSTGRES_USER: email
+            POSTGRES_PASSWORD: devpassword
+        networks:
+            - db
+        volumes:
+            - email-postgres-data:/var/lib/postgresql/data
+

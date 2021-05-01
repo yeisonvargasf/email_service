@@ -1,8 +1,9 @@
 from flask import Flask
 from flask import jsonify
 
-from app.extensions import mail
+from app.extensions import mail, db, migrate
 from app.blueprints.main import main_bp
+from app.blueprints.main.models import EmailModel
 
 
 def create_app():
@@ -14,6 +15,8 @@ def create_app():
     app.register_blueprint(main_bp)
 
     mail.init_app(app)
+    db.init_app(app)
+    migrate.init_app(app, db)
 
     @app.route("/health")
     def health():
