@@ -2,7 +2,7 @@
 
 Revision ID: 001
 Revises: 
-Create Date: 2021-05-01 06:47:26.618582
+Create Date: 2021-05-01 09:51:32.506520
 
 """
 from alembic import op
@@ -22,6 +22,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('sender', sa.String(length=100), nullable=False),
     sa.Column('receiver', sa.String(length=100), nullable=False),
+    sa.Column('subject', sa.String(length=500), nullable=False),
     sa.Column('template_id', sa.Integer(), nullable=True),
     sa.Column('request_id', sa.String(length=32), nullable=False),
     sa.Column('template_params', postgresql.JSON(astext_type=sa.Text()), nullable=True),

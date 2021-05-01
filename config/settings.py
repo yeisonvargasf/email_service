@@ -2,5 +2,13 @@ from os import getenv
 
 
 LOG_LEVEL = "DEBUG" if bool(getenv("FLASK_DEBUG")) else "INFO"
+
 SQLALCHEMY_DATABASE_URI = getenv("SQLALCHEMY_DATABASE_URI")
 SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+MAIL_DEFAULT_SENDER = "admin@rinnegan.io"
+MAIL_SERVER = "smtp.gmail.com"
+MAIL_PORT = 587
+MAIL_USE_TLS = True
+MAIL_USERNAME = getenv("MAIL_USERNAME")
+MAIL_PASSWORD = getenv("MAIL_PASSWORD")

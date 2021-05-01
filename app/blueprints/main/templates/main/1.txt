@@ -1,0 +1,2 @@
+Hi {{ arg1 }}
+Bye {{ arg2 }}

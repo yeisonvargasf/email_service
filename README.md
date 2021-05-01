@@ -16,12 +16,6 @@ This serves following routes
 GET /health
 ```
 ```
-GET /mail/<string:mail_id>
-```
-```
-GET /mail/
-```
-```
 POST /mail
 {
     request_id -> string
