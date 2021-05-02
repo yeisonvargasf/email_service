@@ -6,6 +6,7 @@ from app.extensions import ma
 from app.extensions import mail
 from app.extensions import migrate
 from flask import Flask
+from flask_cors import CORS
 
 
 def create_app(test_settings=None):
@@ -17,6 +18,8 @@ def create_app(test_settings=None):
         app.config.update(test_settings)
 
     app.logger.setLevel(app.config["LOG_LEVEL"])
+
+    CORS(app, resources={r"/api/*": {"origins": "*"}, r"/health/": {"origins": "*"}})
 
     app.register_blueprint(health_bp)
     app.register_blueprint(email_bp)
