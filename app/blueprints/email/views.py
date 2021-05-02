@@ -1,8 +1,7 @@
-from app.blueprints.main.models import EmailModel
-from app.blueprints.main.serializers import EmailSchema
-from app.blueprints.main.utils import send_batch_mail_async
-from app.blueprints.main.utils import send_mail_async
-from app.extensions import db
+from app.blueprints.email.models import EmailModel
+from app.blueprints.email.serializers import EmailSchema
+from app.blueprints.email.utils import send_batch_mail_async
+from app.blueprints.email.utils import send_mail_async
 from flask import Blueprint
 from flask import abort
 from flask import jsonify
@@ -10,17 +9,14 @@ from flask import request
 from marshmallow import ValidationError
 
 
-bp = Blueprint("main", __name__, url_prefix="/mail", template_folder="templates")
+bp = Blueprint("email", __name__, url_prefix="/api/email", template_folder="templates")
 
 
 @bp.before_request
 def check_headers():
     if request.headers.get("Accept") != "application/json":
         abort(406)
-    if (
-        request.method == "POST"
-        and request.headers.get("Content-Type") != "application/json"
-    ):
+    if request.headers.get("Content-Type") != "application/json":
         abort(406)
 
 
@@ -39,10 +35,7 @@ def send_new_mail():
         schema.load(request_data)
 
         send_mail_async(request_data)
-        email = EmailModel(**request_data)
-
-        db.session.add(email)
-        db.session.commit()
+        EmailModel.insert(request_data)
 
         return jsonify({"status": "ok", "message": "Mail send successfully"}), 201
     except ValidationError:
@@ -64,11 +57,8 @@ def send_batch_mail():
         schema.load(request_data)
 
         send_batch_mail_async(request_data)
-        emails = [EmailModel(**data) for data in request_data]
+        EmailModel.bulk_insert(request_data)
 
-        db.session.add_all(emails)
-        db.session.commit()
+        return jsonify({"status": "ok", "message": "Hello world!!"}), 201
     except ValidationError:
         return jsonify({"status": "error", "message": "Invalid request schema"}), 400
-
-    return jsonify({"status": "ok", "message": "Hello world!!"}), 201

@@ -15,7 +15,7 @@ jobs:
       - name: "Install test dependencies"
         run: |
           pip install --upgrade pip setuptools wheel
-          pip install --requirement requirements/dev.txt
+          pip install --requirement requirements/test.txt
 
       - name: "Run black for formatting"
         run: black --config config/pyproject.toml .
@@ -26,9 +26,33 @@ jobs:
       - name: "Run isort for imports formatting"
         run: isort --check --settings-file config/pyproject.toml .
 
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: "Install test dependencies"
+        run: |
+          pip install --upgrade pip setuptools wheel
+          pip install --requirement requirements/prod.txt
+          pip install --requirement requirements/test.txt
+
+      - name: "Run pytest for testing and code coverage"
+        run: pytest -c config/pyproject.toml --cov-report xml
+
+      - name: "Upload Test coverage to codecov"
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage.xml
+          fail_ci_if_error: true
+          verbose: true
+
   build:
     runs-on: "ubuntu-latest"
-    needs: lint
+    needs:
+      - lint
+      - test
     steps:
       - uses: actions/checkout@v2
 

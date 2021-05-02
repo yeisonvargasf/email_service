@@ -3,6 +3,7 @@ email_service
 
 [![pipeline](https://github.com/unofficialopensource-knit/email_service/actions/workflows/pipeline.yml/badge.svg?branch=main)](https://github.com/unofficialopensource-knit/email_service/actions/workflows/pipeline.yml)
 [![Updates](https://pyup.io/repos/github/unofficialopensource-knit/email_service/shield.svg)](https://pyup.io/repos/github/unofficialopensource-knit/email_service/)
+[![codecov](https://codecov.io/gh/unofficialopensource-knit/email_service/branch/main/graph/badge.svg)](https://codecov.io/gh/unofficialopensource-knit/email_service)
 
 ### Intro
 This is a codebase for email microservice.
