@@ -17,7 +17,7 @@ def _send_batch_mail_async(app, params):
             EmailMessage(
                 param["subject"],
                 render_template(
-                    f"main/{param['template_id']}.txt", **param["template_params"]
+                    f"email/{param['template_id']}.txt", **param["template_params"]
                 ),
                 param["sender"],
                 [param["receiver"]],
@@ -31,7 +31,9 @@ def _send_batch_mail_async(app, params):
 def send_mail_async(param):
     message = EmailMessage(
         param["subject"],
-        render_template(f"main/{param['template_id']}.txt", **param["template_params"]),
+        render_template(
+            f"email/{param['template_id']}.txt", **param["template_params"]
+        ),
         param["sender"],
         [param["receiver"]],
     )

@@ -1,6 +1,8 @@
 __pycache__/
+.pytest_cache/
 .git*/
 .vscode/
+tests/
 
 .env*
 *ignore
@@ -8,3 +10,4 @@ __pycache__/
 Dockerfile
 *.md
 *.toml
+.coverage

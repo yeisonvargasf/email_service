@@ -1,7 +1,4 @@
 [tool.black]
-check = true
-diff = true
-color = true
 verbose = true
 target-version = ["py39"]
 exclude = "migrations"
@@ -22,3 +19,8 @@ lines_between_types = 1
 line_length = 88
 multi_line_output = 3
 py_version = 39
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = "tests"
+addopts = "--cov-append --cov-branch --strict-config --verbose --code-highlight yes --color yes --cov app --cov-report term"

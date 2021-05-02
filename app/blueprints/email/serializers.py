@@ -1,4 +1,4 @@
-from app.blueprints.main.models import EmailModel
+from app.blueprints.email.models import EmailModel
 from app.extensions import ma
 
 
