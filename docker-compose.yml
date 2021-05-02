@@ -2,7 +2,8 @@ version: "3.8"
 
 
 networks:
-    db:
+    email:
+    email-postgres:
 
 
 volumes:
@@ -15,9 +16,10 @@ services:
         build:
             context: .
         networks:
-            - db
+            - email
+            - email-postgres
         ports:
-            - 8000:8000
+            - 8001:8000
         volumes:
             - .:/usr/src/app
         env_file:
@@ -29,7 +31,7 @@ services:
             POSTGRES_USER: email
             POSTGRES_PASSWORD: devpassword
         networks:
-            - db
+            - email-postgres
         volumes:
             - email-postgres-data:/var/lib/postgresql/data
 
