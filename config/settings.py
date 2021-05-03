@@ -3,7 +3,7 @@ from os import getenv
 
 LOG_LEVEL = "DEBUG" if bool(getenv("FLASK_DEBUG")) else "INFO"
 
-SQLALCHEMY_DATABASE_URI = getenv("SQLALCHEMY_DATABASE_URI")
+SQLALCHEMY_DATABASE_URI = getenv("DATABASE_URL")
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 MAIL_DEFAULT_SENDER = "admin@rinnegan.io"
